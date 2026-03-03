@@ -2,10 +2,50 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                toast.success("Message sent successfully! We'll get back to you soon.");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+            } else {
+                const data = await response.json();
+                toast.error(data.error || "Failed to send message. Please try again.");
+            }
+        } catch (error) {
+            toast.error("Something went wrong. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 pb-24">
+            <Toaster position="top-center" />
             {/* Header */}
             <section className="bg-primary pt-32 pb-24 text-center px-4">
                 <div className="max-w-3xl mx-auto">
@@ -95,30 +135,63 @@ export default function Contact() {
                         className="lg:col-span-2 bg-white rounded-2xl shadow-xl p-8 md:p-12"
                     >
                         <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
-                        <form className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                                    <input type="text" id="name" className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="John Doe" />
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" 
+                                        placeholder="John Doe" 
+                                    />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                                    <input type="email" id="email" className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="john@company.com" />
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" 
+                                        placeholder="john@company.com" 
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                                <input type="text" id="subject" className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="How can we help?" />
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" 
+                                    placeholder="How can we help?" 
+                                />
                             </div>
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                <textarea id="message" rows={6} className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none" placeholder="Write your message here..." />
+                                <textarea 
+                                    id="message" 
+                                    rows={6} 
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none" 
+                                    placeholder="Write your message here..." 
+                                />
                             </div>
                             <button
-                                type="button"
-                                className="w-full bg-primary hover:bg-primary-light text-white font-bold text-lg py-4 rounded-xl transition-all shadow-lg hover:shadow-primary/30 flex items-center justify-center space-x-2"
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full bg-primary hover:bg-primary-light text-white font-bold text-lg py-4 rounded-xl transition-all shadow-lg hover:shadow-primary/30 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                <span>Send Message</span>
+                                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                                 <Send className="w-5 h-5" />
                             </button>
                         </form>
