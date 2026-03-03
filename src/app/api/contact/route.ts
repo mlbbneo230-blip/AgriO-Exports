@@ -16,6 +16,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email service not configured' },
+        { status: 500 }
+      );
+    }
+
+    console.log('Attempting to send email to:', 'agrioexports.india@gmail.com');
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev', // Will change to custom domain later
@@ -50,7 +61,7 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Resend error:', error);
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: 'Failed to send email', details: error.message || error },
         { status: 500 }
       );
     }
