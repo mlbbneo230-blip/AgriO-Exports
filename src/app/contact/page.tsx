@@ -23,17 +23,21 @@ export default function Contact() {
         setIsSubmitting(true);
 
         try {
+            console.log('Submitting form data:', formData);
             const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
+            console.log('Response status:', response.status);
+            
             if (response.ok) {
                 toast.success("Message sent successfully! We'll get back to you soon.");
                 setFormData({ name: "", email: "", subject: "", message: "" });
             } else {
                 const data = await response.json();
+                console.error('Error response:', data);
                 toast.error(data.error || "Failed to send message. Please try again.");
             }
         } catch (error) {
