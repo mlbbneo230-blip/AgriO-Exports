@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { name: "OUR PRODUCTS", path: "/products" },
   { name: "GLOBAL LOGISTICS", path: "/global-logistics" },
   { name: "ABOUT US", path: "/about" },
+  { name: "CERTIFICATES", path: "/certificates" },
   { name: "CONTACT", path: "/contact" },
 ];
 
@@ -37,7 +38,7 @@ export default function Navbar() {
                 <div key={link.name} className="flex items-center">
                   <Link
                     href={link.path}
-                    className="relative group px-1 py-4 text-[#333] hover:text-[#1b4332] transition-colors"
+                    className="relative group px-1 py-4 text-[#333] hover:text-[#0B1E36] transition-colors"
                   >
                     <span>{link.name}</span>
                     <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -51,7 +52,7 @@ export default function Navbar() {
 
             <button
               onClick={() => toast.success("Quote request feature coming very soon!")}
-              className="bg-[#1b4332] hover:bg-[#122e22] text-white text-[13px] font-bold tracking-widest uppercase px-6 py-3 rounded-md transition-shadow shadow-md hover:shadow-lg"
+              className="bg-[#0B1E36] hover:bg-[#09182b] text-white text-[13px] font-bold tracking-widest uppercase px-6 py-3 rounded-md transition-shadow shadow-md hover:shadow-lg"
             >
               GET A QUOTE
             </button>

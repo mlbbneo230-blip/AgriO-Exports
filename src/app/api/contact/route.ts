@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,58 +13,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
-      return NextResponse.json(
-        { error: 'Email service not configured' },
-        { status: 500 }
-      );
-    }
-
-    console.log('Attempting to send email to:', 'agrioexports.india@gmail.com');
-
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Will change to custom domain later
-      to: 'agrioexports.india@gmail.com',
-      subject: `Contact Form: ${subject}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2d5016; border-bottom: 2px solid #2d5016; padding-bottom: 10px;">
-            New Contact Form Submission
-          </h2>
-          
-          <div style="margin: 20px 0;">
-            <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
-            <p style="margin: 10px 0;"><strong>Email:</strong> ${email}</p>
-            <p style="margin: 10px 0;"><strong>Subject:</strong> ${subject}</p>
-          </div>
-          
-          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <p style="margin: 0;"><strong>Message:</strong></p>
-            <p style="margin: 10px 0; white-space: pre-wrap;">${message}</p>
-          </div>
-          
-          <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
-          
-          <p style="color: #666; font-size: 12px;">
-            This email was sent from the AgriO Exports contact form.
-          </p>
-        </div>
-      `,
+    // Use Web3Forms - completely free, no setup required!
+    // Get your free access key from: https://web3forms.com
+    const formData = new FormData();
+    formData.append('access_key', 'YOUR_WEB3FORMS_KEY'); // You'll add this
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('subject', `Contact Form: ${subject}`);
+    formData.append('message', message);
+    formData.append('from_name', 'AgriO Exports Website');
+    
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
     });
 
-    if (error) {
-      console.error('Resend error:', error);
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      console.error('Web3Forms error:', result);
       return NextResponse.json(
-        { error: 'Failed to send email', details: error.message || error },
+        { error: result.message || 'Failed to send email' },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { message: 'Email sent successfully', id: data?.id },
+      { message: 'Email sent successfully' },
       { status: 200 }
     );
   } catch (error) {

@@ -180,7 +180,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/products#onion"
-                  className="inline-flex items-center justify-center font-bold text-[#1b4332] hover:text-[#d4af37] transition-colors gap-2"
+                  className="inline-flex items-center justify-center font-bold text-[#0B1E36] hover:text-[#d4af37] transition-colors gap-2"
                 >
                   View Details <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -212,12 +212,49 @@ export default function Home() {
                 </p>
                 <Link
                   href="/products#garlic"
-                  className="inline-flex items-center justify-center font-bold text-[#1b4332] hover:text-[#d4af37] transition-colors gap-2"
+                  className="inline-flex items-center justify-center font-bold text-[#0B1E36] hover:text-[#d4af37] transition-colors gap-2"
                 >
                   View Details <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Highlight */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-primary uppercase tracking-wider mb-2">Our Standards</h2>
+            <h3 className="text-3xl md:text-5xl font-bold text-gray-900">Our Certifications</h3>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { img: "Reference Img-1.jpeg", alt: "GMP" },
+              { img: "Reference Img-2.jpeg", alt: "ISO 22000" },
+              { img: "Reference Img-3.jpeg", alt: "Global Standard QA" },
+              { img: "Reference Img-4.jpeg", alt: "Organic Certified" },
+            ].map((cert, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex items-center justify-center"
+              >
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src={`/assets/${cert.img}`}
+                    alt={cert.alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

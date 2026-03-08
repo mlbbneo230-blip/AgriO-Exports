@@ -31,7 +31,7 @@ export default function Contact() {
             });
 
             console.log('Response status:', response.status);
-            
+
             if (response.ok) {
                 toast.success("Message sent successfully! We'll get back to you soon.");
                 setFormData({ name: "", email: "", subject: "", message: "" });
@@ -84,10 +84,13 @@ export default function Contact() {
                             className="bg-white p-8 rounded-2xl shadow-xl flex items-start space-x-6"
                         >
                             <div className="p-4 rounded-xl bg-primary/10 flex-shrink-0">
-                                <Phone className="w-8 h-8 text-primary" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                                    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                                    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+                                </svg>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">WhatsApp / Call</h3>
                                 <p className="text-gray-600 font-medium">+91 7775885983</p>
                                 <p className="text-sm text-gray-500 mt-1">Mon-Sat, 9AM to 6PM IST</p>
                             </div>
@@ -124,7 +127,7 @@ export default function Contact() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">Location</h3>
-                                <p className="text-gray-600 font-medium">India</p>
+                                <p className="text-gray-600 font-medium">Chhatrapati Sambhajinagar, Maharashtra, India</p>
                                 <p className="text-sm text-gray-500 mt-1">Exporting worldwide</p>
                             </div>
                         </motion.div>
@@ -143,51 +146,51 @@ export default function Contact() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                                    <input 
-                                        type="text" 
-                                        id="name" 
+                                    <input
+                                        type="text"
+                                        id="name"
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400" 
-                                        placeholder="John Doe" 
+                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400"
+                                        placeholder="John Doe"
                                     />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        id="email" 
+                                    <input
+                                        type="email"
+                                        id="email"
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400" 
-                                        placeholder="john@company.com" 
+                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400"
+                                        placeholder="john@company.com"
                                     />
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                                <input 
-                                    type="text" 
-                                    id="subject" 
+                                <input
+                                    type="text"
+                                    id="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400" 
-                                    placeholder="How can we help?" 
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-400"
+                                    placeholder="How can we help?"
                                 />
                             </div>
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                <textarea 
-                                    id="message" 
-                                    rows={6} 
+                                <textarea
+                                    id="message"
+                                    rows={6}
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none text-gray-900 placeholder:text-gray-400" 
-                                    placeholder="Write your message here..." 
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none text-gray-900 placeholder:text-gray-400"
+                                    placeholder="Write your message here..."
                                 />
                             </div>
                             <button

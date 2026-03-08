@@ -75,30 +75,6 @@ export default function GlobalLogistics() {
                 </div>
             </section>
 
-            {/* Track Record / Stats */}
-            <section className="py-20 bg-primary text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-                            <div className="text-4xl md:text-5xl font-black text-secondary mb-2">50+</div>
-                            <div className="text-gray-300 font-medium">Countries Served</div>
-                        </motion.div>
-                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-                            <div className="text-4xl md:text-5xl font-black text-secondary mb-2">10k+</div>
-                            <div className="text-gray-300 font-medium">Tons Exported</div>
-                        </motion.div>
-                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                            <div className="text-4xl md:text-5xl font-black text-secondary mb-2">99%</div>
-                            <div className="text-gray-300 font-medium">On-Time Delivery</div>
-                        </motion.div>
-                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-                            <div className="text-4xl md:text-5xl font-black text-secondary mb-2">24/7</div>
-                            <div className="text-gray-300 font-medium">Support</div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
             {/* Interactive map visualization (placeholder concept) */}
             <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Global Presence</h2>
