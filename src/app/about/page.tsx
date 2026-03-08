@@ -45,7 +45,7 @@ export default function About() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                         >
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Journey</h2>
+                            <h2 className="text-3xl font-bold text-white mb-6">Our Journey</h2>
                             <div className="space-y-4 text-gray-600 leading-relaxed">
                                 <p>
                                     AgriO Exports was established with a clear vision: to deliver the finest, naturally potent, and perfectly processed dehydrated foods to the global market. We understand that healthy food is the foundation of a happy life, which is why we compromise on nothing when it comes to quality.
