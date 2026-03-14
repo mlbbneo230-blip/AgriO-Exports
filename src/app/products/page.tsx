@@ -7,19 +7,24 @@ import toast from "react-hot-toast";
 
 const PRODUCTS = [
     {
-        category: "Dehydrated Onion",
-        image: "Reference Img-7.jpeg",
-        items: ["White Onion (Powder, Flakes, Minced, Chopped)", "Red Onion (Powder, Flakes)", "Pink Onion (Powder, Flakes)", "Custom Cuts & Fried Onions"],
+        name: "Dehydrated White Onion Flakes",
+        image: "products/Dehydrated White Onion Flakes.png",
+        description: "Premium quality dehydrated white onion flakes, carefully processed to retain natural flavor, aroma, and nutritional value. Ideal for soups, seasonings, and ready-to-eat meals.",
     },
     {
-        category: "Dehydrated Garlic",
-        image: "Reference Img-6.jpeg",
-        items: ["Garlic Powder", "Garlic Flakes", "Minced & Chopped Garlic", "Granulated & Fried Garlic"],
+        name: "Dehydrated Pink Onion Flakes",
+        image: "products/Dehydrated Pink Onion Flakes.png",
+        description: "Naturally dehydrated pink onion flakes with a rich, sweet flavor profile. Perfect for snack seasonings, curry bases, and international culinary applications.",
     },
     {
-        category: "Spices & Seeds",
-        image: "Spices_and_Seeds.png",
-        items: ["Turmeric & Chilli Powder", "Cumin & Fennel Seeds", "Natural & Hulled Sesame Seeds", "Aromatic Herbs (Mint, Senna)"],
+        name: "White Onion Powder",
+        image: "products/White Onion Powder.png",
+        description: "Finely ground white onion powder made from select-grade onions. A versatile ingredient for spice blends, sauces, dressings, and industrial food processing.",
+    },
+    {
+        name: "Pink Onion Powder",
+        image: "products/Pink Onion Powder.png",
+        description: "Pure pink onion powder with a distinctly robust taste. Widely used in instant food mixes, masala blends, and gourmet cooking across global markets.",
     },
 ];
 
@@ -47,40 +52,32 @@ export default function Products() {
                 </div>
             </section>
 
-            {/* Product Categories */}
+            {/* Product Cards */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {PRODUCTS.map((group, idx) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {PRODUCTS.map((product, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.15, duration: 0.5 }}
+                            transition={{ delay: idx * 0.12, duration: 0.5 }}
                             className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col"
                         >
-                            <div className="relative h-64 w-full overflow-hidden">
+                            <div className="relative h-72 w-full overflow-hidden bg-gray-50">
                                 <Image
-                                    src={`/assets/${group.image}`}
-                                    alt={group.category}
+                                    src={`/assets/${product.image}`}
+                                    alt={product.name}
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white z-10">
-                                    {group.category}
-                                </h3>
                             </div>
 
                             <div className="p-8 flex-1 flex flex-col">
-                                <ul className="space-y-4 mb-8 flex-1">
-                                    {group.items.map((item, idy) => (
-                                        <li key={idy} className="flex items-start">
-                                            <ArrowRight className="w-5 h-5 text-secondary mr-3 shrink-0 mt-0.5" />
-                                            <span className="text-gray-700 leading-relaxed font-medium">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
+                                <p className="text-gray-600 leading-relaxed mb-8 flex-1">
+                                    {product.description}
+                                </p>
                                 <button
                                     onClick={() => toast.success("Quote request feature coming very soon!")}
                                     className="w-full py-4 rounded-xl bg-gray-50 text-primary font-bold hover:bg-primary hover:text-white transition-colors border border-gray-100"
