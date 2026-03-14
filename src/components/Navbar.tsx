@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { name: "OUR PRODUCTS", path: "/products" },
   { name: "GLOBAL LOGISTICS", path: "/global-logistics" },
   { name: "ABOUT US", path: "/about" },
-  { name: "CERTIFICATES", path: "/certificates" },
   { name: "CONTACT", path: "/contact" },
 ];
 

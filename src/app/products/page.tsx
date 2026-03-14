@@ -64,12 +64,12 @@ export default function Products() {
                             transition={{ delay: idx * 0.12, duration: 0.5 }}
                             className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col"
                         >
-                            <div className="relative h-72 w-full overflow-hidden bg-gray-50">
+                            <div className="relative h-72 w-full overflow-hidden">
                                 <Image
                                     src={`/assets/${product.image}`}
                                     alt={product.name}
                                     fill
-                                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
 
