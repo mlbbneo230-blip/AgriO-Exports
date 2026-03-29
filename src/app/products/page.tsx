@@ -19,7 +19,7 @@ const PRODUCTS = [
     {
         name: "White Onion Powder",
         image: "products/White Onion Powder.png",
-        description: "Finely ground white onion powder made from select-grade onions. A versatile ingredient for spice blends, sauces, dressings, and industrial food processing.",
+        description: "Finely ground white onion powder made from select-grade onions. A versatile ingredient for seasoning blends, sauces, dressings, and industrial food processing.",
     },
     {
         name: "Pink Onion Powder",
@@ -47,7 +47,7 @@ export default function Products() {
                         transition={{ delay: 0.1 }}
                         className="text-xl text-gray-300 font-light"
                     >
-                        Explore our premium range of organic dehydrated vegetables, aromatic spices, and nutritious seeds sourced directly from nature.
+                        Explore our premium range of organic dehydrated onions sourced directly from nature.
                     </motion.p>
                 </div>
             </section>

@@ -87,7 +87,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               { icon: ShieldCheck, title: "Uncompromising Quality", desc: "Rigorous testing and global certifications ensure every product meets international standards." },
-              { icon: Leaf, title: "Sustainable Sourcing", desc: "We work directly with farmers to promote eco-friendly practices from seed to harvest." },
+              { icon: Leaf, title: "Sustainable Sourcing", desc: "We work directly with farmers to promote eco-friendly practices from farm to harvest." },
               { icon: Globe, title: "Global Export Reach", desc: "Delivering freshness and flavor across continents with an optimized supply chain." },
             ].map((feature, idx) => (
               <motion.div
@@ -131,7 +131,7 @@ export default function Home() {
           >
             <h2 className="text-4xl font-bold mb-6">We set the standard for tomorrow's food industry, today.</h2>
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              AgriO Exports specializes in the manufacturing and trading of premium dehydrated onions, garlic, and an exquisite range of spices. With a legacy built on trust and innovation, we benchmark food safety and quality globally.
+              AgriO Exports specializes in the manufacturing and trading of premium dehydrated onions. With a legacy built on trust and innovation, we benchmark food safety and quality globally.
             </p>
             <Link
               href="/about"
@@ -206,12 +206,12 @@ export default function Home() {
                 />
               </div>
               <div className="p-8 text-center bg-white relative z-10 border-t border-gray-100">
-                <h4 className="text-2xl font-bold text-primary mb-3">Exquisite Spices & Garlic</h4>
+                <h4 className="text-2xl font-bold text-primary mb-3">Dehydrated Onion Flakes</h4>
                 <p className="text-gray-600 mb-6 line-clamp-2">
-                  Aromatic garlic and rich, deeply flavored spices processed to preserve their natural pungency and essential oils.
+                  Naturally dehydrated white and pink onion flakes with a rich, sweet flavor profile perfect for global culinary applications.
                 </p>
                 <Link
-                  href="/products#garlic"
+                  href="/products"
                   className="inline-flex items-center justify-center font-bold text-[#0B1E36] hover:text-[#d4af37] transition-colors gap-2"
                 >
                   View Details <ArrowRight className="w-4 h-4" />
