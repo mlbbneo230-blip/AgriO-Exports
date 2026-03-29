@@ -24,10 +24,16 @@ export default function Contact() {
 
         try {
             console.log('Submitting form data:', formData);
-            const response = await fetch("/api/contact", {
+            const response = await fetch("https://formsubmit.co/ajax/agrioexports.india@gmail.com", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    _template: "table"
+                }),
             });
 
             console.log('Response status:', response.status);
