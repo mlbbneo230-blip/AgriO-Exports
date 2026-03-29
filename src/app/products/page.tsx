@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -78,12 +79,12 @@ export default function Products() {
                                 <p className="text-gray-600 leading-relaxed mb-8 flex-1">
                                     {product.description}
                                 </p>
-                                <button
-                                    onClick={() => toast.success("Quote request feature coming very soon!")}
-                                    className="w-full py-4 rounded-xl bg-gray-50 text-primary font-bold hover:bg-primary hover:text-white transition-colors border border-gray-100"
+                                <Link
+                                    href="/contact"
+                                    className="w-full py-4 text-center rounded-xl bg-gray-50 text-primary font-bold hover:bg-primary hover:text-white transition-colors border border-gray-100"
                                 >
                                     Request Quote
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}
