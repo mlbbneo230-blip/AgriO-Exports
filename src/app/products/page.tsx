@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
 
 const PRODUCTS = [
     {
@@ -30,6 +31,25 @@ const PRODUCTS = [
 ];
 
 export default function Products() {
+    const [quoteHighlight, setQuoteHighlight] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.location.search.includes("quote=true")) {
+            setQuoteHighlight(true);
+            setTimeout(() => {
+                document.getElementById("products-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+
+            // Remove highlight after some time to stop blinking
+            setTimeout(() => setQuoteHighlight(false), 5000);
+        }
+    }, []);
+
+    const createWhatsAppLink = (productName: string) => {
+        const message = `Hello AgriO Exports,\n\nI am interested in requesting a quote for your *${productName}*. Please provide more details regarding bulk pricing and availability.`;
+        return `https://wa.me/917775885983?text=${encodeURIComponent(message)}`;
+    };
+
     return (
         <div className="min-h-screen bg-white pb-24">
             {/* Header */}
@@ -54,7 +74,7 @@ export default function Products() {
             </section>
 
             {/* Product Cards */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10">
+            <section id="products-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 scroll-m-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {PRODUCTS.map((product, idx) => (
                         <motion.div
@@ -79,12 +99,18 @@ export default function Products() {
                                 <p className="text-gray-600 leading-relaxed mb-8 flex-1">
                                     {product.description}
                                 </p>
-                                <Link
-                                    href="/contact"
-                                    className="w-full py-4 text-center rounded-xl bg-gray-50 text-primary font-bold hover:bg-primary hover:text-white transition-colors border border-gray-100"
+                                <a
+                                    href={createWhatsAppLink(product.name)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`w-full py-4 text-center rounded-xl font-bold transition-all border ${
+                                        quoteHighlight
+                                            ? "bg-primary text-white animate-pulse border-primary shadow-lg shadow-primary/30"
+                                            : "bg-gray-50 text-primary hover:bg-primary hover:text-white border-gray-100"
+                                    }`}
                                 >
                                     Request Quote
-                                </Link>
+                                </a>
                             </div>
                         </motion.div>
                     ))}

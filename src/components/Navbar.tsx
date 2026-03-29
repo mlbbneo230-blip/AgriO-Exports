@@ -49,12 +49,13 @@ export default function Navbar() {
               ))}
             </div>
 
-            <button
-              onClick={() => toast.success("Quote request feature coming very soon!")}
+            <Link
+              href="/products?quote=true"
+              onClick={() => setIsOpen(false)}
               className="bg-[#0B1E36] hover:bg-[#09182b] text-white text-[13px] font-bold tracking-widest uppercase px-6 py-3 rounded-md transition-shadow shadow-md hover:shadow-lg"
             >
               GET A QUOTE
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
