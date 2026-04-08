@@ -232,10 +232,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { img: "Reference Img-1.jpeg", alt: "GMP" },
-              { img: "Reference Img-2.jpeg", alt: "ISO 22000" },
-              { img: "Reference Img-3.jpeg", alt: "Global Standard QA" },
-              { img: "Reference Img-4.jpeg", alt: "Organic Certified" },
+              { img: "Reference Img-1.jpeg", alt: "DGFT" },
+              { img: "Reference Img-2.jpeg", alt: "APEDA" },
+              { img: "Reference Img-3.jpeg", alt: "MSME" },
+              { img: "Reference Img-4.jpeg", alt: "FSSAI", subtitle: "FSSAI no. 11526044000080" },
             ].map((cert, idx) => (
               <motion.div
                 key={idx}
@@ -243,7 +243,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex items-center justify-center"
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col items-center justify-center"
               >
                 <div className="relative w-full aspect-[4/3]">
                   <Image
@@ -253,6 +253,11 @@ export default function Home() {
                     className="object-contain"
                   />
                 </div>
+                {cert.subtitle && (
+                  <p className="mt-2 text-center text-xs sm:text-sm font-bold text-[#0B1E36] w-full">
+                    {cert.subtitle}
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>
